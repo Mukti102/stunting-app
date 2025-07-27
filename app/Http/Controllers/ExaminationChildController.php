@@ -93,9 +93,20 @@ class ExaminationChildController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ExaminationChild $examinationChild)
+    public function show(ExaminationChild $examinationChild,$id)
     {
-        //
+        $child = ExaminationChild::with('child')->find($id);
+        return view('pages.pemeriksaan.show',compact('child'));
+    }
+
+    public function normal(){
+        $data = ExaminationChild::where('status_stunting','normal')->get();
+        return view('pages.pemeriksaan.normal',compact('data'));
+    }
+
+    public function nonNormal(){
+        $data = ExaminationChild::where('status_stunting','!=','normal')->get();
+        return view('pages.pemeriksaan.nonnormal',compact('data'));
     }
 
     /**

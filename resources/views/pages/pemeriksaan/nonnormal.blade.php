@@ -15,7 +15,7 @@
 
         <x-datatable>
 
-                    <table class="table {{ $data->isNotEmpty() ? 'datanew' : '' }}">
+            <table class="table {{ $data->isNotEmpty() ? 'datanew' : '' }}">
 
                 <thead>
                     <tr>
@@ -72,18 +72,6 @@
                                     href="product-details.html">
                                     <img src="assets/img/icons/eye.svg" alt="img" />
                                 </a>
-                                <a class="me-3" href="{{ route('pemeriksaan.edit', $item->id) }}">
-                                    <img src="assets/img/icons/edit.svg" alt="img" />
-                                </a>
-                                <form action="{{ route('pemeriksaan.destroy', $item->id) }}" method="POST"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type='submit' style="border: none;background: none" class="confirm-text"
-                                        href="javascript:void(0);">
-                                        <img src="assets/img/icons/delete.svg" alt="img" />
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @empty
