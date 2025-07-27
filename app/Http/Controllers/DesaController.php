@@ -19,17 +19,27 @@ class DesaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+    public function create() {}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "nama_desa" => "required|unique:desas",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required",
+            "kode_pos" => "nullable|string|max:10",
+        ]);
+
+        try {
+            Desa::create($request->all());
+            return redirect()->route('desa.index')->with('success', 'Desa created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to create desa: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -53,7 +63,20 @@ class DesaController extends Controller
      */
     public function update(Request $request, Desa $desa)
     {
-        //
+        $request->validate([
+            "nama_desa" => "required",
+            "kecamatan" => "required",
+            "kabupaten" => "required",
+            "provinsi" => "required",
+            "kode_pos" => "nullable|string|max:10",
+        ]);
+
+        try {
+            $desa->update($request->all());
+            return redirect()->route('desa.index')->with('success', 'Desa updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to update desa: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -61,6 +84,11 @@ class DesaController extends Controller
      */
     public function destroy(Desa $desa)
     {
-        //
+        try{
+            $desa->delete();
+            return redirect()->route('desa.index')->with('success', 'Desa deleted successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to delete desa: ' . $e->getMessage()]);
+        }
     }
 }

@@ -16,6 +16,20 @@
                   >
                 </a>
               </li>
+              <li class="{{ request()->is('balita*') ? 'active' : '' }}">
+                <a href="{{ route('balita.index') }}"
+                  ><img src="{{ asset('assets/img/icons/users1.svg')}}" alt="img" /><span>
+                    Data Balita</span
+                  >
+                </a>
+              </li>
+              <li class="{{ request()->is('pemeriksaan*') ? 'active' : '' }}">
+                <a href="{{ route('pemeriksaan.index') }}"
+                  ><img src="{{ asset('assets/img/icons/users1.svg')}}" alt="img" /><span>
+                    Data Pemeriksaan</span
+                  >
+                </a>
+              </li>
             </ul>
           </div>
         </div>
