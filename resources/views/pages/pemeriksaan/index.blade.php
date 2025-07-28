@@ -15,7 +15,7 @@
 
         <x-datatable>
 
-                    <table class="table {{ $data->isNotEmpty() ? 'datanew' : '' }}">
+            <table class="table {{ $data->isNotEmpty() ? 'datanew' : '' }}">
 
                 <thead>
                     <tr>

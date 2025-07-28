@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::resource('desa',DesaController::class);
+    Route::resource('kecamatan',DesaController::class);
     Route::resource('balita',ChildController::class);
     Route::resource('pemeriksaan', ExaminationChildController::class);
     Route::get('/normal-child',[ExaminationChildController::class,'normal'])->name('normal.child');

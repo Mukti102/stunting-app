@@ -8,20 +8,14 @@
                             Dashboard</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('desa*') ? 'active' : '' }}">
-                    <a href="{{ route('desa.index') }}">
+                <li class="{{ request()->is('kecamatan*') ? 'active' : '' }}">
+                    <a href="{{ route('kecamatan.index') }}">
                         <i class="fa fa-road"></i>
                         <span>
-                            Desa</span>
+                            kecamatan</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('reference*') ? 'active' : '' }}">
-                    <a href="{{ route('reference.index') }}">
-                        <i class="fa  fa-server"></i>
-                        <span>
-                            Data WHO</span>
-                    </a>
-                </li>
+                
                 <li class="{{ request()->is('balita*') ? 'active' : '' }}">
                     <a href="{{ route('balita.index') }}">
                         <i class="fa fa-users"></i>

@@ -26,17 +26,18 @@ class DesaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "nama_desa" => "required|unique:desas",
+        $validated = $request->validate([
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required",
             "kode_pos" => "nullable|string|max:10",
         ]);
 
+        $validated['nama_desa'] = '0';
+
         try {
-            Desa::create($request->all());
-            return redirect()->route('desa.index')->with('success', 'Desa created successfully.');
+            Desa::create($validated);
+            return redirect()->route('kecamatan.index')->with('success', 'Desa created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Failed to create desa: ' . $e->getMessage()]);
         }
@@ -63,17 +64,18 @@ class DesaController extends Controller
      */
     public function update(Request $request, Desa $desa)
     {
-        $request->validate([
-            "nama_desa" => "required",
+        $validated = $request->validate([
             "kecamatan" => "required",
             "kabupaten" => "required",
             "provinsi" => "required",
             "kode_pos" => "nullable|string|max:10",
         ]);
 
+        $validated['nama_desa'] = '0';
+
         try {
-            $desa->update($request->all());
-            return redirect()->route('desa.index')->with('success', 'Desa updated successfully.');
+            $desa->update($validated);
+            return redirect()->route('kecamatan.index')->with('success', 'Desa updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Failed to update desa: ' . $e->getMessage()]);
         }
@@ -86,7 +88,7 @@ class DesaController extends Controller
     {
         try{
             $desa->delete();
-            return redirect()->route('desa.index')->with('success', 'Desa deleted successfully.');
+            return redirect()->route('kecamatan.index')->with('success', 'Desa deleted successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Failed to delete desa: ' . $e->getMessage()]);
         }

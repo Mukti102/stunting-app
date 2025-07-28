@@ -4,8 +4,8 @@
         <x-alert />
         <div class="page-header">
             <div class="page-title">
-                <h4>Data Desa</h4>
-                <h6>Manage your Desa</h6>
+                <h4>Data Kecamatan</h4>
+                <h6>Manage your kecamatan</h6>
             </div>
             <div class="page-btn">
                 <button data-bs-toggle="modal" data-bs-target="#addModal" href="addproduct.html" class="btn btn-added"><img
@@ -21,7 +21,6 @@
                         <th>
                             #
                         </th>
-                        <th>Nama Desa</th>
                         <th>Kecamatan</th>
                         <th>Kabupaten</th>
                         <th>Provinsi</th>
@@ -35,9 +34,6 @@
                             <td>
                                 {{ $loop->iteration }}
                             </td>
-                            <td>
-                                {{ $item->nama_desa }}
-                            </td>
                             <td>{{ $item->kecamatan }}</td>
                             <td>{{ $item->kabupaten }}</td>
                             <td>{{ $item->provinsi }}</td>
@@ -50,7 +46,7 @@
                                     href="#">
                                     <img src="assets/img/icons/edit.svg" alt="img" />
                                 </a>
-                                <form action="{{ route('desa.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('kecamatan.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type='submit' style="border: none;background: none" class="confirm-text"
@@ -81,11 +77,10 @@
                     <h5 class="modal-title" id="addModalLabel">Tambah Produk</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('desa.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('kecamatan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body row">
-                        <x-form.input-text class="col-sm-6" label="Nama Desa" name="nama_desa"
-                            placeholder="Masukkan Nama Desa" />
+                       
                         <x-form.input-text class="col-sm-6" label="Kecamatan" name="kecamatan"
                             placeholder="Masukkan Nama Kecamatan" />
                         <x-form.input-text class="col-sm-6" label="Kabupaten" name="kabupaten"
@@ -116,12 +111,11 @@
                         <h5 class="modal-title" id="editModalLabel{{ $item->id }}">Edit Desa</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="{{ route('desa.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('kecamatan.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-body row">
-                            <x-form.input-text class="col-sm-6" value="{{ $item->nama_desa }}" label="Nama Desa"
-                                name="nama_desa" placeholder="Masukkan Nama Desa" />
+                            
                             <x-form.input-text class="col-sm-6" value="{{ $item->kecamatan }}" label="Kecamatan"
                                 name="kecamatan" placeholder="Masukkan Nama Kecamatan" />
                             <x-form.input-text class="col-sm-6" value="{{ $item->kabupaten }}" label="Kabupaten"
